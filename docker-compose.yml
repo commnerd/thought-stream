@@ -6,6 +6,8 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - 2181
+    networks:
+      - thought-stream
   
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -20,3 +22,10 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - thought-stream
+
+networks:
+    thought-stream:
+        name: thought-stream
+        driver: bridge
