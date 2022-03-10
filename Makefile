@@ -23,10 +23,10 @@ down:
 	fi;
 	
 docker-up:
-	docker-compose -f docker-compose.yml -f web/docker-compose.yml up -d
+	docker-compose up -d
 
 docker-down:
-	docker-compose -f docker-compose.yml -f web/docker-compose.yml down
+	docker-compose down
 
 
 clean:
