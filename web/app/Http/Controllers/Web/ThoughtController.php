@@ -1,9 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
-use App\Http\Requests\StoreThoughtRequest;
+// Laravel imports
+use Illuminate\Http\Response;
+
+// Project imports
 use App\Http\Requests\UpdateThoughtRequest;
+use App\Http\Requests\StoreThoughtRequest;
 use App\Models\Thought;
 
 class ThoughtController extends Controller
@@ -13,7 +17,7 @@ class ThoughtController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): Response
     {
         //
     }
@@ -23,7 +27,7 @@ class ThoughtController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): Response
     {
         //
     }
@@ -34,7 +38,7 @@ class ThoughtController extends Controller
      * @param  \App\Http\Requests\StoreThoughtRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreThoughtRequest $request)
+    public function store(StoreThoughtRequest $request): Response
     {
         //
     }
@@ -45,7 +49,7 @@ class ThoughtController extends Controller
      * @param  \App\Models\Thought  $thought
      * @return \Illuminate\Http\Response
      */
-    public function show(Thought $thought)
+    public function show(Thought $thought): Response
     {
         //
     }
@@ -56,7 +60,7 @@ class ThoughtController extends Controller
      * @param  \App\Models\Thought  $thought
      * @return \Illuminate\Http\Response
      */
-    public function edit(Thought $thought)
+    public function edit(Thought $thought): Response
     {
         //
     }
@@ -68,7 +72,7 @@ class ThoughtController extends Controller
      * @param  \App\Models\Thought  $thought
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateThoughtRequest $request, Thought $thought)
+    public function update(UpdateThoughtRequest $request, Thought $thought): Response
     {
         //
     }
@@ -79,7 +83,7 @@ class ThoughtController extends Controller
      * @param  \App\Models\Thought  $thought
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Thought $thought)
+    public function destroy(Thought $thought): Response
     {
         //
     }
