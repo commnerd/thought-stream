@@ -1,4 +1,4 @@
-.PHONY: help run run-docker clean
+.PHONY: help run up down run-docker clean
 
 help:
 	@echo ""
@@ -12,6 +12,8 @@ help:
 	@echo "run        - Alias for `make up`"
 	@echo "run-docker - Run the application in leveraging docker-compose"
 	@echo "clean      - Cleans up project"
+
+run: up
 
 up:
 	@if [ "$$(which docker-compose)" ];\
