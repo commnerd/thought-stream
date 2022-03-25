@@ -19,7 +19,7 @@ class ThoughtController extends Controller
      */
     public function index(): Response
     {
-        return response(Thought::all());
+        return response()->view("thought-stream");
     }
 
     /**
@@ -29,7 +29,7 @@ class ThoughtController extends Controller
      */
     public function create(): Response
     {
-        return response("HI");
+        return response()->view("thought-stream");
     }
 
     /**
@@ -40,7 +40,8 @@ class ThoughtController extends Controller
      */
     public function store(StoreThoughtRequest $request): Response
     {
-        return response(Thought::create($request->all()));
+        Thought::create($request->all());
+        return response()->redirect(route("thought-stream.create"));
     }
 
     /**
@@ -62,7 +63,7 @@ class ThoughtController extends Controller
      */
     public function edit(Thought $thought): Response
     {
-        return response("HI");
+        return response()->view("thoughts.edit", ["thought" => $thought]);
     }
 
     /**

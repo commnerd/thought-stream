@@ -15,6 +15,7 @@ class CreateThoughtsTable extends Migration
     {
         Schema::create('thoughts', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id');
             $table->foreign('user_id')->references('id');
             $table->string('thought');
             $table->timestamps();

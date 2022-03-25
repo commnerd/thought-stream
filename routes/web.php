@@ -36,3 +36,5 @@ Route::post('/register', [App\Http\Controllers\Web\Auth\RegisterController::clas
 Route::get('/register', [App\Http\Controllers\Web\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('/stream-thoughts', \App\Http\Controllers\Web\ThoughtController::class);

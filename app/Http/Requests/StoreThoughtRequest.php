@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Auth;
 class StoreThoughtRequest extends FormRequest
 {
     /**
@@ -13,7 +13,7 @@ class StoreThoughtRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -24,7 +24,7 @@ class StoreThoughtRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'thought' => 'required|min:5|max:1000',
         ];
     }
 }
