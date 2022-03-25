@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(10)->create()->foreach(function ($user) {
+            $user->thoughts()->saveMany(\App\Models\Thought::factory(rand(1, 5))->make());
+        });
     }
 }
