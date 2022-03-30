@@ -13,11 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth')->get('/', function () {
-    return view('welcome');
+Route::middleware('auth')->group(function() {
+    Route::get('/', [App\Http\Controllers\Web\ThoughtController::class, 'index'])->name('home');
+    Route::post('/', [App\Http\Controllers\Web\ThoughtController::class, 'store']);
 });
-
-Route::resource('thoughts', \App\Http\Controllers\Web\ThoughtController::class);
 
 Route::get('/login', [App\Http\Controllers\Web\Auth\LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [App\Http\Controllers\Web\Auth\LoginController::class, 'login']);
@@ -36,5 +35,3 @@ Route::post('/register', [App\Http\Controllers\Web\Auth\RegisterController::clas
 Route::get('/register', [App\Http\Controllers\Web\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::resource('/stream-thoughts', \App\Http\Controllers\Web\ThoughtController::class);

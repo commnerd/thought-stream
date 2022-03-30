@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Web;
 
 // Laravel includes
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 
 // App includes
 use App\Http\Requests\StoreThoughtRequest;
 use App\Http\Requests\UpdateThoughtRequest;
 use App\Models\Thought;
+use App\Providers\RouteServiceProvider;
 
 class ThoughtController extends Controller
 {
@@ -19,7 +21,9 @@ class ThoughtController extends Controller
      */
     public function index(): Response
     {
-        return response()->view("thought-stream");
+        return response()->view("thought-stream", [
+            "thoughts" => Thought::orderBy("created_at", "desc")->get(),
+        ]);
     }
 
     /**
@@ -36,12 +40,12 @@ class ThoughtController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreThoughtRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreThoughtRequest $request): Response
+    public function store(StoreThoughtRequest $request): RedirectResponse
     {
         Thought::create($request->all());
-        return response()->redirect(route("thought-stream.create"));
+        return response()->redirectTo(RouteServiceProvider::HOME);
     }
 
     /**
@@ -71,11 +75,12 @@ class ThoughtController extends Controller
      *
      * @param  \App\Http\Requests\UpdateThoughtRequest  $request
      * @param  \App\Models\Thought  $thought
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateThoughtRequest $request, Thought $thought): Response
+    public function update(UpdateThoughtRequest $request, Thought $thought): RedirectResponse
     {
-        return response($thought->update($request->all()));
+        $thought->update($request->all());
+        return response()->redirectTo(RouteServiceProvider::HOME);
     }
 
     /**
