@@ -19,7 +19,7 @@ class ThoughtController extends Controller
      */
     public function index(): JsonResponse
     {
-        //
+        return response()->json(Thought::all()->toArray());
     }
 
     /**
@@ -30,7 +30,9 @@ class ThoughtController extends Controller
      */
     public function store(StoreThoughtRequest $request): JsonResponse
     {
-        //
+        $thought = Thought::create($request->toArray());
+        
+        return response(201)->json(['success' => true]);
     }
 
     /**
@@ -41,7 +43,7 @@ class ThoughtController extends Controller
      */
     public function show(Thought $thought): JsonResponse
     {
-        //
+        return response()->json($thought->toArray());
     }
 
     /**
@@ -53,7 +55,8 @@ class ThoughtController extends Controller
      */
     public function update(UpdateThoughtRequest $request, Thought $thought): JsonResponse
     {
-        //
+        $thought->update($request->toArray());
+        return response()->json(['success' => true]);
     }
 
     /**
@@ -64,6 +67,9 @@ class ThoughtController extends Controller
      */
     public function destroy(Thought $thought): JsonResponse
     {
-        //
+        if($thought->destroy()) {
+            return response()->json(['success' => true]);
+        }
+        return response()->json(['success' => false]);
     }
 }

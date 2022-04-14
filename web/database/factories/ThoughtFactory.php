@@ -14,7 +14,8 @@ class ThoughtFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id' => \App\Models\User::inRandomOrder()->firstOrFail()->id,
+            'thought' => $this->faker->text(),
         ];
     }
 }
